@@ -1,7 +1,9 @@
 #encoding=UTF-8
-import TConst as const, TUtils, TImageDb as imgdb
+import TConst as const, TUtils 
 import sys, time
+
 const.TIME_OUT = 1000
+print const.TIME_OUT
 
 if(len(sys.argv) <2):
     print "No start url..."
@@ -26,15 +28,6 @@ id
 allLinks = TUtils.getLinksFromUrl(startUrl) 
 #....使用多线程处理网页 
 
-'''
-存储image
-按img进行0～9分表
-url: 源网页
-img: image地址
-ct: 抓取时间
-'''
-imgs = allLinks['img']
-for img in imgs:
-    imgdb.insert(startUrl, img,int(time.time())) 
 
-print const.TIME_OUT
+imgs = allLinks['img']
+TUtils.saveImg(startUrl, imgs)

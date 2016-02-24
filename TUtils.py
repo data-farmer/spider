@@ -1,5 +1,25 @@
 #encoding=UTF-8
 import urllib2, re
+import TImageDb as imgdb
+import time
+
+'''
+保存图片信息
+存储image
+按img进行0～9分表
+id 
+url: 源网页
+img: image地址, 保存最新的一次
+ct: 抓取时间
+'''
+def saveImg(url, imgs):
+    for img in imgs:
+        item = imgdb.getByImg(img)
+        if not item :
+            imgdb.insert(url, img,int(time.time())) 
+        else :
+            pass
+
 '''
 计算一个字符串的md5值
 '''
